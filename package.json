@@ -1,0 +1,73 @@
+{
+  "name": "revola",
+  "displayName": "Revola",
+  "version": "0.0.0",
+  "description": "Universal release automation",
+  "keywords": [
+    "release",
+    "release-automation",
+    "versioning",
+    "git",
+    "git-tag",
+    "npm-publish",
+    "jsr",
+    "deno",
+    "package-publish",
+    "cli",
+    "automation",
+    "ci"
+  ],
+  "homepage": "https://revola-docs.vercel.app",
+  "repository": "git+https://github.com/teneplaysofficial/revola.git",
+  "bugs": "https://github.com/teneplaysofficial/revola/issues",
+  "funding": "https://github.com/sponsors/teneplaysofficial",
+  "license": "Apache-2.0",
+  "author": "Sriman",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": false
+  },
+  "packageManager": "pnpm@10.30.3",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "bin": {
+    "revola": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
+    "prepare": "husky",
+    "prepublishOnly": "pnpm run test && pnpm run build",
+    "test": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "echo-banner": "^0.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
+    "@tenedev/prettier-config": "^1.1.1",
+    "@types/node": "^25.3.0",
+    "@vitest/coverage-v8": "4.0.18",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "tsdown": "^0.20.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "prettier": "@tenedev/prettier-config",
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown",
+    "*.{js,ts}": "pnpm run lint:fix"
+  }
+}

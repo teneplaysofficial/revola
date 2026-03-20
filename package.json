@@ -51,11 +51,21 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "echo-banner": "^0.2.0"
+    "arglet": "^1.1.0",
+    "echo-banner": "^0.3.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^13.3.2",
+    "jiti": "^2.6.1",
+    "js-utils-kit": "^2.3.0",
+    "semver": "^7.7.4",
+    "use-git": "^1.0.1",
+    "zod": "^4.3.6",
+    "zylog": "^0.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
     "@tenedev/prettier-config": "^1.1.1",
+    "@types/inquirer": "^9.0.9",
     "@types/node": "^25.3.0",
     "@vitest/coverage-v8": "4.0.18",
     "husky": "^9.1.7",

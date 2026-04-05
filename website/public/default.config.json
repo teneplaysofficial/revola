@@ -1,0 +1,46 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/revola@0.0.0/schema.json",
+  "logLevel": "info",
+  "preset": "node",
+  "version": {
+    "strategy": "semver",
+    "defaultBump": "patch"
+  },
+  "git": {
+    "cleanWorkingDirectory": true,
+    "upstream": true,
+    "author": {
+      "name": "github-actions[bot]",
+      "email": "41898282+github-actions[bot]@users.noreply.github.com"
+    },
+    "targetBranch": "main",
+    "add": true,
+    "commit": true,
+    "commitMessage": "Release {{REVOLA_VERSION}}",
+    "push": true,
+    "tag": true,
+    "tagFormat": "v{{REVOLA_VERSION}}",
+    "tagAnnotation": "Release {{REVOLA_VERSION}}",
+    "tagMajor": false,
+    "tagMinor": false
+  },
+  "npm": {
+    "publish": true,
+    "registry": "https://registry.npmjs.org/",
+    "tokenRef": "NPM_TOKEN",
+    "packageManager": "npm",
+    "tag": "latest",
+    "access": "public",
+    "provenance": false
+  },
+  "jsr": {
+    "publish": false,
+    "tokenRef": "JSR_TOKEN",
+    "packageManager": "npx"
+  },
+  "changelog": {
+    "enabled": true,
+    "file": "CHANGELOG.md",
+    "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})"
+  }
+}

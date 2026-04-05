@@ -1,9 +1,4 @@
 {
   "extends": ["@tenedev/tsconfig"],
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
   "exclude": ["website"]
 }

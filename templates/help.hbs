@@ -1,0 +1,30 @@
+
+{{!-- Usage --}}
+{{bold (yellow "USAGE:")}}
+  {{green name}} {{dim "<command>"}} {{dim "[options]"}}
+
+{{!-- Commands --}}
+{{#if KNOWN_COMMANDS.length}}
+{{bold (yellow "COMMANDS:")}}
+{{#each KNOWN_COMMANDS}}
+  {{green (padRight command 14)}} {{description}}
+{{/each}}
+{{/if}}
+
+{{!-- Options --}}
+{{#if KNOWN_FLAGS.length}}
+{{bold (yellow "OPTIONS:")}}
+{{#each KNOWN_FLAGS}}
+  {{#if shortFlag}}
+  {{magenta shortFlag}}, {{magenta (padRight flag 20)}} {{description}}
+  {{else}}
+  {{magenta (padRight flag 24)}} {{description}}
+  {{/if}}
+{{/each}}
+{{/if}}
+
+{{!-- Examples --}}
+{{bold (yellow "EXAMPLES:")}}
+  {{#each EXAMPLES}}
+  {{padRight (green ../name) 8}} {{#each command}}{{#if @first}}{{else}} {{/if}}{{magenta (padRight this 15)}}{{/each}}{{dim title}}
+  {{/each}}

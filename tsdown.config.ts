@@ -24,4 +24,16 @@ export default defineConfig([
       }),
     },
   },
+  {
+    name: 'Lib',
+    entry: './lib/index.ts',
+    format: ['cjs', 'esm'],
+    dts: true,
+    minify: true,
+    banner: {
+      js: banner({
+        pkg,
+      }),
+    },
+  },
 ]);

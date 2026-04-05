@@ -27,7 +27,10 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: teneplaysofficial/diff@d7e5233000c5b461840bced94cd16494e11c9be6 # v1
         with:
-          run: pnpm run lint:fix
+          run: |
+            pnpm run build:schema
+            pnpm run lint:fix
+            pnpm run fmt
 
   lint:
     runs-on: ubuntu-latest

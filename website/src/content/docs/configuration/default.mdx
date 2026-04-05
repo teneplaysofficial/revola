@@ -1,0 +1,15 @@
+---
+title: Default Configuration
+description: The default configuration used by Revola when no config file is provided.
+sidebar:
+  label: Default
+---
+
+import { Code } from '@astrojs/starlight/components';
+import defaultConfig from '../../../../public/default.config.json?raw';
+
+Revola works out of the box with zero configuration. The defaults below are applied automatically when no config file is found in your project root.
+
+You can override any of these values by creating a config file and specifying only the fields you want to change, the rest will fall back to these defaults.
+
+<Code code={defaultConfig} lang="json" title=".revola.json" />

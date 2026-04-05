@@ -19,6 +19,18 @@ export default defineConfig({
         baseUrl: 'https://github.com/teneplaysofficial/revola/edit/main/website',
       },
       lastUpdated: true,
+      sidebar: [
+        {
+          label: 'Getting Started',
+          link: 'getting-started',
+        },
+        {
+          label: 'Configuration',
+          autogenerate: {
+            directory: 'configuration',
+          },
+        },
+      ],
     }),
   ],
 });

@@ -3,7 +3,7 @@ title: Getting Started
 description: Install Revola and set up your first automated release pipeline.
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { FileTree, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## Prerequisites
 
@@ -11,36 +11,129 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 - A Git repository with at least one commit
 - An npm or JSR account (depending on your publish target)
 
-## Installation
+## Quick Start
 
 <Tabs>
 <TabItem label="npm" icon="npm">
+
+**Install**
 
 ```sh
 npm install -D revola
 ```
 
+**Run (without install)**
+
+```sh
+npx revola
+```
+
 </TabItem>
 
 <TabItem label="pnpm" icon="pnpm">
-  
-```sh 
+
+**Install**
+
+```sh
 pnpm add -D revola
 ```
-  
+
+**Run (without install)**
+
+```sh
+pnpm dlx revola
+```
+
 </TabItem>
+
 <TabItem label="yarn" icon="seti:yarn">
-  
+
+**Install**
+
 ```sh
 yarn add -D revola
 ```
-  
+
+**Run (without install)**
+
+```sh
+yarn dlx revola
+```
+
 </TabItem>
+
 <TabItem label="bun" icon="bun">
-  
+
+**Install**
+
 ```sh
 bun add -D revola
 ```
-  
+
+**Run (without install)**
+
+```sh
+bunx revola
+```
+
 </TabItem>
 </Tabs>
+
+## Setup
+
+<Steps>
+
+1.  **Initialize Revola**
+
+    Run the init command to generate a default config file.
+    See the default configuration: [Default Config](./configuration/default)
+
+    ```sh
+    revola init
+    ```
+
+    This will create a .revola.json in your project.
+
+       <FileTree>
+
+        - **.revola.json** revola config file
+        - package.json
+        - ...
+
+       </FileTree>
+
+2.  **Configure your project**
+
+    Edit the generated config file to match your setup:
+
+    ```json
+    {
+      "preset": "node",
+      "npm": {
+        "publish": true,
+        "tokenRef": "NPM_TOKEN",
+        "access": "public",
+        "provenance": false
+      },
+      "jsr": {
+        "publish": false,
+        "tokenRef": "JSR_TOKEN",
+        "packageManager": "npx"
+      },
+      "changelog": {
+        "enabled": true,
+        "file": "CHANGELOG.md",
+        "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})"
+      }
+    }
+    ```
+
+3.  #### Preview a release
+
+    Before making changes, run a dry run to preview what will happen:
+
+    ```sh
+    revola --dry-run
+    ```
+
+</Steps>

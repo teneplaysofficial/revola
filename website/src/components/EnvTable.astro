@@ -1,0 +1,42 @@
+---
+import { REVOLA_ENV } from '../constants/env';
+
+const entries = Object.entries(REVOLA_ENV).sort(([a], [b]) => a.localeCompare(b));
+---
+
+<>
+  {
+    entries.map(([key, value]) => (
+      <section>
+        <h4 id={key.toLowerCase()}>
+          <code>{key}</code>
+        </h4>
+
+        <p>{value.description}</p>
+
+        {value.example && (
+          <>
+            <p>
+              <strong>Example</strong>
+            </p>
+            {/* prettier-ignore */}
+            <pre><code>{key}={value.example}</code></pre>
+          </>
+        )}
+
+        {value.usage && (
+          <>
+            <p>
+              <strong>Used for</strong>
+            </p>
+            <ul>
+              {value.usage.map((u) => (
+                <li>{u}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </section>
+    ))
+  }
+</>

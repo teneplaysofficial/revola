@@ -12,8 +12,16 @@ export default defineConfig({
       title: pkg.displayName,
       description: pkg.description,
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/teneplaysofficial/revola' },
-        { icon: 'npm', label: 'NPM', href: 'https://www.npmjs.com/package/revola' },
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/teneplaysofficial/revola',
+        },
+        {
+          icon: 'npm',
+          label: 'NPM',
+          href: 'https://www.npmjs.com/package/revola',
+        },
       ],
       editLink: {
         baseUrl: 'https://github.com/teneplaysofficial/revola/edit/main/website',
@@ -23,6 +31,10 @@ export default defineConfig({
         {
           label: 'Getting Started',
           link: 'getting-started',
+        },
+        {
+          label: 'Environment Variables',
+          link: 'env',
         },
         {
           label: 'Configuration',

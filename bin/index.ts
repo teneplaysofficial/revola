@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { print } from 'echo-banner';
-import { resolveModuleRelative } from 'js-utils-kit';
+import { detectPM, resolveModuleRelative } from 'js-utils-kit';
+import updateNotifier from 'update-notifier';
+import colors from 'use-colors';
 import zylog from 'zylog';
 import config, { setConfig } from '../lib/config';
 import { EXAMPLES, KNOWN_COMMANDS, KNOWN_FLAGS } from '../lib/constants/cli';
@@ -39,6 +41,31 @@ if (hasFlag(['--help', '-h'])) {
     ),
   );
   process.exit(0);
+}
+
+if (!ctx.isCI) {
+  const notifier = updateNotifier({
+    pkg,
+  });
+
+  const pm = await detectPM({
+    lockfile: false,
+    packageJson: false,
+  });
+
+  notifier.notify({
+    boxenOptions: {
+      title: displayName,
+      borderColor: 'yellowBright',
+      padding: 1,
+      borderStyle: 'round',
+    },
+    message: `Update available ${colors.dim(notifier.update?.current)} → ${colors.blue(notifier.update?.latest)}
+
+Run ${colors.magenta`${pm.name ?? 'npm'} i${pm.name == null ? ' -g ' : ' '}${notifier.update?.name}`} to update.
+
+${colors.dim('More info: ')} ${colors.cyan.underline(pkg.homepage)}`,
+  });
 }
 
 await setConfig();

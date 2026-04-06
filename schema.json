@@ -256,7 +256,18 @@
       "default": {
         "enabled": true,
         "file": "CHANGELOG.md",
-        "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})"
+        "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})",
+        "includeTypes": [
+          "BREAKING CHANGE",
+          "feat",
+          "fix",
+          "refactor",
+          "perf",
+          "chore",
+          "docs",
+          "ci",
+          "deps"
+        ]
       },
       "type": "object",
       "properties": {
@@ -274,6 +285,71 @@
           "default": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})",
           "description": "Template for release title.",
           "type": "string"
+        },
+        "includeTypes": {
+          "default": [
+            "BREAKING CHANGE",
+            "feat",
+            "fix",
+            "refactor",
+            "perf",
+            "chore",
+            "docs",
+            "ci",
+            "deps"
+          ],
+          "description": "List of commit types to include in the changelog. If empty or not provided, all commit types are included. The order matters and determines how sections are organized in the final changelog.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "feat",
+              "fix",
+              "docs",
+              "style",
+              "refactor",
+              "perf",
+              "test",
+              "build",
+              "ci",
+              "chore",
+              "revert",
+              "deps",
+              "config",
+              "security",
+              "types",
+              "lint",
+              "format",
+              "release",
+              "meta",
+              "infra",
+              "hotfix",
+              "version",
+              "workflow",
+              "package",
+              "workspace",
+              "api",
+              "BREAKING CHANGE",
+              "db",
+              "data",
+              "ui",
+              "ux",
+              "accessibility",
+              "backend",
+              "frontend",
+              "logging",
+              "monitoring",
+              "stability",
+              "optimization",
+              "dx",
+              "tooling",
+              "scripts",
+              "cleanup",
+              "migration",
+              "rollback"
+            ]
+          },
+          "uniqueItems": true
         }
       },
       "additionalProperties": false,

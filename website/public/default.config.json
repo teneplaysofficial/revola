@@ -41,6 +41,17 @@
   "changelog": {
     "enabled": true,
     "file": "CHANGELOG.md",
-    "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})"
+    "title": "{{REVOLA_VERSION}} ({{REVOLA_DATE}})",
+    "includeTypes": [
+      "BREAKING CHANGE",
+      "feat",
+      "fix",
+      "refactor",
+      "perf",
+      "chore",
+      "docs",
+      "ci",
+      "deps"
+    ]
   }
 }

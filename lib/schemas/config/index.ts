@@ -6,6 +6,7 @@ import { GitSchema } from './git';
 import { HooksSchema } from './hooks';
 import { JsrSchema } from './jsr';
 import { NpmSchema } from './npm';
+import { PluginsSchema } from './plugins';
 import { VersionSchema } from './version';
 
 export const ConfigSchema = z
@@ -45,6 +46,8 @@ export const ConfigSchema = z
     changelog: ChangelogSchema.default(ChangelogSchema.parse({})),
 
     hooks: HooksSchema,
+
+    plugins: PluginsSchema,
   })
   .describe('Revola Configuration')
   .partial()

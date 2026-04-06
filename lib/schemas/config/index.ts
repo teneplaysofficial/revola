@@ -3,6 +3,7 @@ import { pkg } from '../../constants/paths';
 import { ChangelogSchema } from './changelog';
 import { LogLevelEnum, PresetEnum } from './enums';
 import { GitSchema } from './git';
+import { HooksSchema } from './hooks';
 import { JsrSchema } from './jsr';
 import { NpmSchema } from './npm';
 import { VersionSchema } from './version';
@@ -42,6 +43,8 @@ export const ConfigSchema = z
     jsr: JsrSchema.default(JsrSchema.parse({})),
 
     changelog: ChangelogSchema.default(ChangelogSchema.parse({})),
+
+    hooks: HooksSchema,
   })
   .describe('Revola Configuration')
   .partial()

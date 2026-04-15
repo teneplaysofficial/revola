@@ -70,4 +70,4 @@ jobs:
           name: build-output
           path: dist/
       - name: Release Preview
-        run: pnpm dlx pkg-pr-new publish --comment=update --packageManager=npm,pnpm,yarn --commentWithDev
+        run: pnpm dlx pkg-pr-new publish --bin --comment=update --packageManager=npm,pnpm,yarn --commentWithDev

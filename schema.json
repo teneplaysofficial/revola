@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "$schema": {
-      "default": "https://cdn.jsdelivr.net/npm/revola@0.0.0/schema.json",
+      "default": "https://cdn.jsdelivr.net/npm/revola@0.1.0/schema.json",
       "description": "Path to the JSON schema for IDE autocompletion.",
       "type": "string",
       "format": "uri"

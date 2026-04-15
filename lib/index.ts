@@ -1,6 +1,6 @@
-import type { Config } from './types';
+import type { Config, Ctx, Plugin } from './types';
 
-export type { Config };
+export type { Ctx, Config, Plugin };
 
 /**
  * Revola Configuration.

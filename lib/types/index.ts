@@ -1,22 +1,19 @@
 import type { PackageJson } from 'js-utils-kit';
 import type z from 'zod';
+import type { REVOLA_ENV } from '../constants';
 import type { KNOWN_COMMANDS, KNOWN_FLAGS } from '../constants/cli';
+import type { ctx } from '../ctx';
+import type { NamespaceStore } from '../ns-store';
 import type { ConfigSchema } from '../schemas/config';
+import type { PluginsSchema } from '../schemas/config/plugins';
+
+export * from './plugin';
 
 export type HookPhase = 'before' | 'after';
 
-export type HookGitTagSuffix = 'major' | 'minor';
+export type HookEvent = 'init' | 'version' | 'git' | 'publish' | 'changelog';
 
-export type HookGitPhase = 'commit' | 'tag' | `tag:${HookGitTagSuffix}` | 'push';
-
-export type HookPublishTarget = 'npm' | 'jsr' | 'github';
-
-export type HookEvent = 'init' | 'version:bump' | 'publish' | 'changelog';
-
-export type HookName =
-  | `${HookPhase}:${HookEvent}`
-  | `${HookPhase}:publish:${HookPublishTarget}`
-  | `${HookPhase}:git:${HookGitPhase}`;
+export type HookName = `${HookPhase}:${HookEvent}`;
 
 export type KnownCommand = (typeof KNOWN_COMMANDS)[number]['command'];
 
@@ -29,3 +26,11 @@ export type Json = Pick<PackageJson, 'version' | 'private'> & {
 };
 
 export type Config = z.infer<typeof ConfigSchema>;
+
+export type ScopedStore = ReturnType<NamespaceStore['createNamespace']>;
+
+export type Ctx = typeof ctx;
+
+export type PluginEntry = z.infer<typeof PluginsSchema>;
+
+export type RevolaEnv = (typeof REVOLA_ENV)[number];

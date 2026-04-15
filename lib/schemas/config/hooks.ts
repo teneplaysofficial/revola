@@ -2,14 +2,9 @@ import z from 'zod';
 
 export const HooksSchema = z
   .record(
-    z
-      .string()
-      .regex(
-        /^(before|after):(init|version(?::(bump))|git(?::commit|tag(?::(major|minor))?|push)|publish(?::(npm|jsr|github))?|changelog)$/,
-        {
-          error: 'Hook key must match pattern',
-        },
-      ),
+    z.string().regex(/^(before|after):(init|version|git|publish|changelog)$/, {
+      error: 'Hook key must match pattern',
+    }),
     z.union([
       z.string().min(1, 'Command cannot be empty'),
       z.array(z.string().min(1, 'Command cannot be empty')).min(1, 'Command cannot be empty'),

@@ -359,7 +359,7 @@
       "type": "object",
       "propertyNames": {
         "type": "string",
-        "pattern": "^(before|after):(init|version(?::(bump))|git(?::commit|tag(?::(major|minor))?|push)|publish(?::(npm|jsr|github))?|changelog)$"
+        "pattern": "^(before|after):(init|version|git|publish|changelog)$"
       },
       "additionalProperties": {
         "anyOf": [

@@ -32,11 +32,6 @@ export const KNOWN_FLAGS = [
     description: 'Enable trace mode.',
   },
   {
-    flag: '--interactive',
-    shortFlag: '-I',
-    description: 'Enable interactive mode.',
-  },
-  {
     flag: '--ci',
     shortFlag: '-C',
     description: 'Enable CI mode.',
@@ -60,10 +55,6 @@ export const EXAMPLES = [
   {
     title: '# Initialize a new project in the current directory',
     command: ['init'],
-  },
-  {
-    title: '# Run the CLI in interactive mode (prompts enabled)',
-    command: ['--interactive'],
   },
   {
     title: '# Run in CI mode (non-interactive, suitable for pipelines)',

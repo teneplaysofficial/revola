@@ -37,7 +37,13 @@ await Promise.all([
     'website/public/default.config.json',
     `${JSON.stringify(DEFAULT_CONFIG, null, 2)}${EOL}`,
   ),
-  writeSchema(parsed.version),
-  ...(!isPrerelease ? [writeSchema(majorVer), writeSchema(minorVer), writeSchema('latest')] : []),
-  ...(isPrerelease && typeof preTag === 'string' ? [writeSchema(preTag)] : []),
+  ...(process.argv.includes('--cdn')
+    ? [
+        writeSchema(parsed.version),
+        ...(!isPrerelease
+          ? [writeSchema(majorVer), writeSchema(minorVer), writeSchema('latest')]
+          : []),
+        ...(isPrerelease && typeof preTag === 'string' ? [writeSchema(preTag)] : []),
+      ]
+    : []),
 ]);

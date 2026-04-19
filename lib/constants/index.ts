@@ -1,6 +1,9 @@
+import { ConfigSchema } from '../schemas/config';
 import type { PluginKeys } from '../types/plugin';
 
 export const CORE_PLUGINS = {} as const;
+
+export const DEFAULT_CONFIG = ConfigSchema.parse({});
 
 export const REVOLA_ENV = [
   'REVOLA_VERSION',

@@ -1,10 +1,12 @@
-import z from 'zod';
+import z, { regexes } from 'zod';
 
 const AuthorSchema = z
   .object({
     name: z.string().default('github-actions[bot]').describe('Name to use for release commits.'),
     email: z
-      .email()
+      .email({
+        pattern: regexes.unicodeEmail,
+      })
       .default('41898282+github-actions[bot]@users.noreply.github.com')
       .describe('Email to use for release commits.'),
   })

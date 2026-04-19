@@ -4,6 +4,7 @@ import { join, resolve } from 'node:path';
 import { stringifyJson } from 'js-utils-kit';
 import semver from 'semver';
 import z from 'zod';
+import { DEFAULT_CONFIG } from '../lib/constants';
 import { pkg } from '../lib/constants/paths';
 import { ConfigSchema } from '../lib/schemas/config';
 
@@ -34,7 +35,7 @@ await Promise.all([
   writeFile(SCHEMA_FILE, stringifyJson(schema)),
   writeFile(
     'website/public/default.config.json',
-    `${JSON.stringify(ConfigSchema.parse({}), null, 2)}${EOL}`,
+    `${JSON.stringify(DEFAULT_CONFIG, null, 2)}${EOL}`,
   ),
   writeSchema(parsed.version),
   ...(!isPrerelease ? [writeSchema(majorVer), writeSchema(minorVer), writeSchema('latest')] : []),

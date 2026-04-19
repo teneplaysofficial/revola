@@ -1,9 +1,10 @@
 import { join } from 'node:path';
 import arglet from 'arglet';
-import { isFile, isObject, readJsonFile } from 'js-utils-kit';
+import { deepMerge, isFile, isObject, readJsonFile } from 'js-utils-kit';
 import colors from 'use-colors';
 import z from 'zod';
 import zylog from 'zylog';
+import { DEFAULT_CONFIG } from '../constants';
 import { CONFIG_FILES } from '../constants/paths';
 import { ctx } from '../ctx';
 import { ConfigSchema } from '../schemas/config';
@@ -76,9 +77,8 @@ export async function loadConfig() {
   if (!Object.keys(userConfig).length)
     zylog.debug('No configuration found, using default settings');
 
-  zylog.debug('Applying CLI overrides');
-  const mergedConfig = arglet(userConfig);
-  zylog.trace(`CLI merged config:\n${JSON.stringify(mergedConfig, null, 2)}`);
+  zylog.debug('Applying CLI overrides if present');
+  const mergedConfig = arglet(deepMerge(DEFAULT_CONFIG, userConfig));
 
   zylog.debug('Validating configuration');
   const parsed = ConfigSchema.safeParse(mergedConfig);

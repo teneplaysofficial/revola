@@ -102,7 +102,7 @@
               "description": "Email to use for release commits.",
               "type": "string",
               "format": "email",
-              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+              "pattern": "^[^\\s@\"]{1,64}@[^\\s@]{1,255}$"
             }
           },
           "additionalProperties": false,

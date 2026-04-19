@@ -1,10 +1,11 @@
 import { spawn } from 'node:child_process';
 import { envRef } from 'js-utils-kit';
 import colors from 'use-colors';
-import zylog from 'zylog';
+import zylog, { type ZylogLevel } from 'zylog';
 import { REVOLA_ENV } from '../constants';
 import { ctx } from '../ctx';
 import type { RevolaEnv } from '../types';
+import { hasFlag } from './cli';
 
 export function toArray(v: string | string[] = []) {
   return Array.isArray(v) ? v : [v];
@@ -71,4 +72,10 @@ export function exec(
       );
     });
   });
+}
+
+export function resolveLogLevel(): ZylogLevel | undefined {
+  if (hasFlag(['--trace', '-T'])) return 'trace';
+  if (hasFlag(['--debug', '-D'])) return 'debug';
+  return;
 }

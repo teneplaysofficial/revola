@@ -21,6 +21,10 @@ type Flags = (typeof KNOWN_FLAGS)[number];
 
 export type KnownFlag = Flags['flag'] | Extract<Flags, { shortFlag: string }>['shortFlag'];
 
+export type Args = KnownCommand | KnownFlag;
+
+export type ArgsArray = Array<KnownCommand | KnownFlag>;
+
 export type Json = Pick<PackageJson, 'version' | 'private'> & {
   revola: Config;
 };

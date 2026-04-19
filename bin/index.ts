@@ -2,12 +2,15 @@ import { readFile } from 'node:fs/promises';
 import { print } from 'echo-banner';
 import { resolveModuleRelative } from 'js-utils-kit';
 import zylog from 'zylog';
+import { runCommand } from '../lib/commands';
+import { init } from '../lib/commands/init';
 import config, { setConfig } from '../lib/config';
 import { CORE_PLUGINS } from '../lib/constants';
 import { EXAMPLES, KNOWN_COMMANDS, KNOWN_FLAGS } from '../lib/constants/cli';
 import { pkg } from '../lib/constants/paths';
 import { ctx } from '../lib/ctx';
 import { PluginManager } from '../lib/plugins/manager';
+import { resolveLogLevel } from '../lib/utils';
 import { hasFlag } from '../lib/utils/cli';
 import { renderTemplate } from '../lib/utils/handlebars';
 
@@ -45,12 +48,9 @@ if (hasFlag(['--help', '-h'])) {
 
 await setConfig();
 
-zylog.level = config.logLevel ?? 'info';
+zylog.level = resolveLogLevel() ?? config.logLevel ?? zylog.level;
 
-if (hasFlag(['--debug', '-D'])) zylog.level = 'debug';
-if (hasFlag(['--trace', '-T'])) zylog.level = 'trace';
-if (ctx.isCI) zylog.info('Running in CI environment');
-if (ctx.dryRun) zylog.warn('Dry run mode enabled no changes will be applied');
+await runCommand('init', init);
 
 const manager = new PluginManager(ctx, CORE_PLUGINS);
 

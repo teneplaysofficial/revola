@@ -29,7 +29,11 @@ export type Json = Pick<PackageJson, 'version' | 'private'> & {
   revola: Config;
 };
 
+type CleanConfig = Omit<Config, '$schema'>;
+
 export type Config = z.infer<typeof ConfigSchema>;
+
+export type UserConfig = CleanConfig | (() => CleanConfig | Promise<CleanConfig>);
 
 export type ScopedStore = ReturnType<NamespaceStore['createNamespace']>;
 

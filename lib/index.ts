@@ -1,6 +1,8 @@
-import type { Config, Ctx, Plugin } from './types';
+import { init } from './commands/init';
+import type { Config, Ctx, Plugin, UserConfig } from './types';
 
-export type { Config, Ctx, Plugin };
+export type { Config, Ctx, Plugin, UserConfig };
+export { init };
 
 /**
  * Revola Configuration.
@@ -14,6 +16,6 @@ export type { Config, Ctx, Plugin };
  * });
  * ```
  */
-export function defineConfig(config: Config): Config {
+export function defineConfig(config: UserConfig): UserConfig {
   return config;
 }

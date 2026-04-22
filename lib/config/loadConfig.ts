@@ -8,7 +8,7 @@ import { DEFAULT_CONFIG } from '../constants';
 import { CONFIG_FILES } from '../constants/paths';
 import { ctx } from '../ctx';
 import { ConfigSchema } from '../schemas/config';
-import type { Config, Json } from '../types';
+import type { Config, Json, UserConfig } from '../types';
 import { jiti } from '../utils/jiti';
 
 export async function loadConfig() {
@@ -37,8 +37,18 @@ export async function loadConfig() {
         throw err;
       }
     } else {
-      const mod = await jiti.import<{ default: Config }>(filePath);
-      const exported = mod.default;
+      const mod = await jiti.import<{ default: UserConfig }>(filePath);
+      let exported = mod.default;
+
+      if (typeof exported === 'function') {
+        try {
+          zylog.debug(`Config file exports a function, executing it: ${colors.cyan`${filePath}`}`);
+          exported = await exported();
+        } catch (err) {
+          zylog.error(`Failed to execute config file: ${colors.red`${filePath}`}`);
+          throw err;
+        }
+      }
 
       if (isObject(exported)) {
         userConfig = exported;

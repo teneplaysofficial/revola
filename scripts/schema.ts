@@ -13,6 +13,10 @@ const baseDir = resolve('website/public/schemas');
 const parsed = semver.parse(pkg.version);
 const schema = z.toJSONSchema(ConfigSchema, { target: 'draft-7' });
 
+schema.$id = 'https://json.schemastore.org/revola.json';
+schema.title = 'Revola Configuration';
+schema.description = 'Configuration file for Revola';
+
 if (!parsed) process.exit(1);
 
 async function writeSchema(dir: string) {
@@ -32,7 +36,7 @@ const isPrerelease = parsed.prerelease.length > 0;
 const preTag = isPrerelease ? String(parsed.prerelease[0]) : null;
 
 await Promise.all([
-  writeFile(SCHEMA_FILE, stringifyJson(schema)),
+  writeFile(SCHEMA_FILE, `${stringifyJson(schema)}${EOL}`),
   writeFile(
     'website/public/default.config.json',
     `${JSON.stringify(DEFAULT_CONFIG, null, 2)}${EOL}`,

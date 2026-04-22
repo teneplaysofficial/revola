@@ -393,5 +393,8 @@
       "description": "Defines plugins where each key is a plugin name and the value is its configuration object."
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://json.schemastore.org/revola.json",
+  "title": "Revola Configuration",
+  "description": "Configuration file for Revola"
 }

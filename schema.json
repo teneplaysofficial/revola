@@ -394,7 +394,7 @@
     }
   },
   "additionalProperties": false,
-  "$id": "https://json.schemastore.org/revola.json",
+  "$id": "https://www.schemastore.org/revola.json",
   "title": "Revola Configuration",
   "description": "Configuration file for Revola"
 }

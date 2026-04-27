@@ -13,7 +13,7 @@ const baseDir = resolve('website/public/schemas');
 const parsed = semver.parse(pkg.version);
 const schema = z.toJSONSchema(ConfigSchema, { target: 'draft-7' });
 
-schema.$id = 'https://json.schemastore.org/revola.json';
+schema.$id = 'https://www.schemastore.org/revola.json';
 schema.title = 'Revola Configuration';
 schema.description = 'Configuration file for Revola';
 

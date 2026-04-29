@@ -16,6 +16,8 @@ import { renderTemplate } from '../lib/utils/handlebars';
 
 const { displayName, name, version } = pkg;
 
+process.title = name;
+
 if (hasFlag(['--version', '-v'])) {
   console.log(version);
   process.exit(0);

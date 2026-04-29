@@ -26,6 +26,11 @@ export type Args = KnownCommand | KnownFlag;
 export type ArgsArray = Array<KnownCommand | KnownFlag>;
 
 export type Json = Pick<PackageJson, 'version' | 'private'> & {
+  packages: {
+    '': {
+      version: string;
+    };
+  };
   revola: Config;
 };
 

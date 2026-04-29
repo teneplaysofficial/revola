@@ -48,7 +48,8 @@
         "defaultBump": {
           "default": "patch",
           "description": "The default level to bump the version when using the \"semver\" strategy.",
-          "type": "string"
+          "type": "string",
+          "enum": ["major", "minor", "patch"]
         }
       },
       "additionalProperties": false,
@@ -393,5 +394,8 @@
       "description": "Defines plugins where each key is a plugin name and the value is its configuration object."
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://www.schemastore.org/revola.json",
+  "title": "Revola Configuration",
+  "description": "Configuration file for Revola"
 }

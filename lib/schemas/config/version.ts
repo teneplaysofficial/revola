@@ -1,4 +1,5 @@
 import z from 'zod';
+import { ReleaseTypeEnum } from '../release/enums';
 import { VersionStrategyEnum } from './enums';
 
 export const VersionSchema = z
@@ -7,10 +8,9 @@ export const VersionSchema = z
       'Determines how the next version is calculated.',
     ),
 
-    defaultBump: z
-      .string()
-      .default('patch')
-      .describe('The default level to bump the version when using the "semver" strategy.'),
+    defaultBump: ReleaseTypeEnum.default('patch').describe(
+      'The default level to bump the version when using the "semver" strategy.',
+    ),
   })
   .partial()
   .describe('Configuration for versioning behavior.');
